@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HelpHub UI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-box">H</div>
+      <span>HelpHub AI</span>
+    </div>
+
+    <ul class="nav-links">
+      <li>Home</li>
+      <li>Explore</li>
+      <li>Leaderboard</li>
+    </ul>
+  </nav>
+
+  <!-- Main Section -->
+  <div class="container">
+
+    <!-- Left Card -->
+    <div class="left-card">
+      <p class="tag">COMMUNITY ACCESS</p>
+      <h1>Enter the support network.</h1>
+
+      <p class="desc">
+        Choose a demo identity, set your role, and jump into a multi-page 
+        product flow designed for asking, offering, and tracking help with a premium interface.
+      </p>
+
+      <ul>
+        <li>Role-based entry for Need Help, Can Help, or Both</li>
+        <li>Direct path into dashboard, requests, AI Center, and community feed</li>
+        <li>Persistent demo session powered by LocalStorage</li>
+      </ul>
+    </div>
+
+    <!-- Right Card -->
+    <div class="right-card">
+      <p class="tag small">LOGIN / SIGNUP</p>
+      <h2>Authenticate your community profile</h2>
+
+      <label>Select demo user</label>
+      <select>
+        <option>Ayesha Khan</option>
+      </select>
+
+      <label>Role selection</label>
+      <select>
+        <option>Both</option>
+      </select>
+
+      <div class="row">
+        <div>
+          <label>Email</label>
+          <input type="text" value="community@helphub.ai">
+        </div>
+
+        <div>
+          <label>Password</label>
+          <input type="password" value="12345678">
+        </div>
+      </div>
+
+      <button>Continue to dashboard</button>
+    </div>
+
+  </div>
+
+</body>
+</html>

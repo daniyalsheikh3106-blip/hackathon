@@ -1,0 +1,820 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HelpHub AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F1EDE2;
+    --dark: #1a1a1a;
+    --panel-dark: #15322E;
+    --teal: #4D6A59;
+    --gold: #D8BC60;
+    --white: #ffffff;
+    --gray-text: #666;
+    --border: #ddd8cc;
+    --tag-solved-bg: #9ECEA9;
+    --tag-high-bg: #D08282;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(135deg, #e8f0e8 0%, #F1EDE2 40%, #F1EDE2 100%);
+    min-height: 100vh;
+    color: var(--dark);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+        justify-content: space-between !important;
+    align-items: center;
+    padding: 14px 36px;
+    background: transparent;
+    border-bottom: none;
+    gap: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 32px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 30px;
+    height: 30px;
+    background: var(--teal);
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--dark);
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    flex: 1;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 999px;
+    transition: background 0.15s;
+  }
+
+  .nav-links a:hover { background: rgba(0,0,0,0.06); }
+  .nav-links a.active {
+    background: var(--white);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+  }
+
+  .nav-signal {
+    font-size: 13px;
+    color: var(--gray-text);
+  }
+
+  .btn-primary {
+    background: var(--panel-dark);
+    color: var(--white);
+    border: none;
+    padding: 9px 22px;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 24px 36px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-left {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 36px 32px;
+    border: 1px solid var(--border);
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    margin-bottom: 16px;
+  }
+
+  .hero-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.08;
+    color: var(--dark);
+    margin-bottom: 20px;
+  }
+
+  .hero-desc {
+    color: var(--gray-text);
+    font-size: 14px;
+    max-width: 380px;
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .btn-outline {
+    background: var(--white);
+    color: var(--dark);
+    border: 1.5px solid var(--border);
+    padding: 9px 22px;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: rgba(0,0,0,0.05); }
+
+  .stats-row {
+    display: flex;
+    gap: 16px;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    flex: 1;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-text);
+    margin-bottom: 6px;
+  }
+
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .stat-desc {
+    font-size: 12px;
+    color: var(--gray-text);
+    line-height: 1.5;
+  }
+
+  /* HERO RIGHT */
+  .hero-right {
+    background: var(--panel-dark);
+    border-radius: 20px;
+    padding: 36px 32px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 16px;
+  }
+
+  .hero-right-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .hero-right-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 320px;
+  }
+
+  .gold-dot {
+    width: 52px;
+    height: 52px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: absolute;
+    top: 28px;
+    right: 28px;
+  }
+
+  .feature-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .feature-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 18px 20px;
+  }
+
+  .feature-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--white);
+  }
+
+  .feature-card-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  .feature-card-percent {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  /* CORE FLOW */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 36px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 14px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+
+  .section-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--dark);
+  }
+
+  .btn-ghost {
+    background: var(--white);
+    color: var(--dark);
+    border: 1.5px solid var(--border);
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 0.15s;
+  }
+  .btn-ghost:hover { border-color: var(--dark); }
+
+  .flow-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  .flow-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+  }
+
+  .flow-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+  }
+
+  .flow-card-desc {
+    font-size: 13px;
+    color: var(--gray-text);
+    line-height: 1.65;
+  }
+
+  /* FEATURED REQUESTS */
+  .section-featured {
+    background: var(--cream);
+  }
+
+  .requests-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  .request-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #eee;
+    color: var(--dark);
+    border: 1px solid var(--border);
+  }
+
+  .tag.category { background: #ddeee6; color: var(--teal); border-color: #b5d4c4; }
+  .tag.high { background: #f2d8d8; color: #7a2020; border-color: var(--tag-high-bg); }
+  .tag.medium { background: #fdf0e0; color: #9a6010; border-color: #f0d8a0; }
+  .tag.solved { background: #d6eedd; color: #1e5525; border-color: var(--tag-solved-bg); }
+  .tag.open { background: #e8eef8; color: #2a48a0; border-color: #b0c0e8; }
+  .tag.skill { background: #f3f0ff; color: #5030a0; border-color: #c8b8f0; }
+
+  .request-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .request-body {
+    font-size: 12.5px;
+    color: var(--gray-text);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+
+  .request-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .requester-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 2px;
+  }
+
+  .requester-meta {
+    font-size: 11.5px;
+    color: var(--gray-text);
+  }
+
+  .open-details {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: none;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 20px 36px;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-size: 12.5px;
+    color: var(--gray-text);
+  }
+
+  /* ── TABLET (≤ 900px) ── */
+  @media (max-width: 900px) {
+    nav {
+      padding: 12px 20px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .nav-signal {
+      display: none;
+    }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 32px 20px;
+      gap: 28px;
+    }
+
+    .hero-headline {
+      font-size: 40px;
+    }
+
+    .hero-right-headline {
+      font-size: 30px;
+    }
+
+    .stats-row {
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      min-width: calc(50% - 8px);
+    }
+
+    .flow-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .requests-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .section {
+      padding: 40px 20px;
+    }
+
+    .section-headline {
+      font-size: 28px;
+    }
+
+    footer {
+      padding: 20px 20px;
+    }
+  }
+
+  /* ── MOBILE (≤ 600px) ── */
+  @media (max-width: 600px) {
+    nav {
+      padding: 12px 16px;
+    }
+
+    .nav-logo-text {
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
+
+    .hero {
+      padding: 24px 16px;
+      gap: 24px;
+    }
+
+    .hero-headline {
+      font-size: 32px;
+    }
+
+    .hero-desc {
+      font-size: 13px;
+    }
+
+    .hero-btns {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-btns a {
+      text-align: center;
+    }
+
+    .stats-row {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stat-card {
+      min-width: 100%;
+    }
+
+    .stat-number {
+      font-size: 26px;
+    }
+
+    .hero-right {
+      padding: 28px 22px;
+    }
+
+    .hero-right-headline {
+      font-size: 26px;
+    }
+
+    .gold-dot {
+      width: 38px;
+      height: 38px;
+      top: 22px;
+      right: 22px;
+    }
+
+    .section {
+      padding: 32px 16px;
+    }
+
+    .section-headline {
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .flow-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .requests-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .request-card {
+      padding: 18px 16px;
+    }
+
+    footer {
+      padding: 18px 16px;
+    }
+  }
+  .logo-bx{
+    width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon logo-bx">H</div>
+    <span class="nav-logo-text">HelpHub AI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" class="active">Home</a></li>
+    <li><a href="explore.html">Explore</a></li>
+    <li><a href="ranking/index.html">Leaderboard</a></li>
+    <li><a href="request/index.html">AI Center</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="notifications/index.html" style="text-decoration: none;"><span class="nav-signal">Live community signals</span></a>
+    <a href="authenticate/index.html" class="btn-primary" style="background-color: #109988;">Join the platform</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">SMIT Grand Coding Night 2026</p>
+    <h1 class="hero-headline">Find help faster.<br>Become help that matters.</h1>
+    <p class="hero-desc">HelpHub AI is a community-powered support network for students, mentors, creators, and builders. Ask for help, offer help, track impact, and let AI surface smarter matches across the platform.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary" style="background-color: #109988;">Open product demo</a>
+      <a href="#" class="btn-outline">Post a request</a>
+    </div>
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Members</div>
+        <div class="stat-number">384+</div>
+        <div class="stat-desc">Students, mentors, and helpers in the loop.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Requests</div>
+        <div class="stat-number">72+</div>
+        <div class="stat-desc">Support posts shared across learning journeys.</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Solved</div>
+        <div class="stat-number">69+</div>
+        <div class="stat-desc">Problems resolved through fast community action.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="gold-dot"></div>
+    <p class="hero-right-eyebrow">Live Product Feel</p>
+    <h2 class="hero-right-headline">More than a form.<br>More like an ecosystem.</h2>
+    <p class="hero-right-desc">A polished multi-page experience inspired by product platforms, with AI summaries, trust scores, contribution signals, notifications, and leaderboard momentum built directly in HTML, CSS, JavaScript, and LocalStorage.</p>
+    <div class="feature-cards">
+      <div class="feature-card">
+        <div class="feature-card-title">AI request intelligence</div>
+        <div class="feature-card-desc">Auto-categorization, urgency detection, tags, rewrite suggestions, and trend snapshots.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-title">Community trust graph</div>
+        <div class="feature-card-desc">Badges, helper rankings, trust score boosts, and visible contribution history.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card-percent">100%</div>
+        <div class="feature-card-desc">Top trust score currently active across the sample mentor network.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CORE FLOW -->
+<div class="section">
+  <p class="section-eyebrow">Core Flow</p>
+  <div class="section-header">
+    <h2 class="section-headline">From struggling alone to solving together</h2>
+    <a href="#" class="btn-ghost">Try onboarding AI</a>
+  </div>
+  <div class="flow-grid">
+    <div class="flow-card">
+      <div class="flow-card-title">Ask for help clearly</div>
+      <div class="flow-card-desc">Create structured requests with category, urgency, AI suggestions, and tags that attract the right people.</div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-card-title">Discover the right people</div>
+      <div class="flow-card-desc">Use the explore feed, helper lists, notifications, and messaging to move quickly once a match happens.</div>
+    </div>
+    <div class="flow-card">
+      <div class="flow-card-title">Track real contribution</div>
+      <div class="flow-card-desc">Trust scores, badges, solved requests, and rankings help the community recognize meaningful support.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED REQUESTS -->
+<div class="section">
+  <p class="section-eyebrow">Featured Requests</p>
+  <div class="section-header">
+    <h2 class="section-headline">Community problems currently in motion</h2>
+    <a href="#" class="btn-ghost">View full feed</a>
+  </div>
+  <div class="requests-grid">
+
+    <div class="request-card">
+      <div class="tag-row">
+        <span class="tag category">Web Development</span>
+        <span class="tag high">High</span>
+        <span class="tag solved">Solved</span>
+      </div>
+      <div class="request-title">Need help</div>
+      <div class="request-body">helpn needed</div>
+      <div class="request-footer">
+        <div>
+          <div class="requester-name">Ayesha Khan</div>
+          <div class="requester-meta">Karachi • 1 helper interested</div>
+        </div>
+        <a href="#" class="open-details">Open<br>details</a>
+      </div>
+    </div>
+
+    <div class="request-card">
+      <div class="tag-row">
+        <span class="tag category">Web Development</span>
+        <span class="tag high">High</span>
+        <span class="tag solved">Solved</span>
+      </div>
+      <div class="request-title">Need help making my portfolio responsive before demo day</div>
+      <div class="request-body">My HTML/CSS portfolio breaks on tablets and I need layout guidance before tomorrow evening.</div>
+      <div class="tag-row" style="margin-bottom: 14px;">
+        <span class="tag skill">HTML/CSS</span>
+        <span class="tag skill">Responsive</span>
+        <span class="tag skill">Portfolio</span>
+      </div>
+      <div class="request-footer">
+        <div>
+          <div class="requester-name">Sara Noor</div>
+          <div class="requester-meta">Karachi • 1 helper interested</div>
+        </div>
+        <a href="#" class="open-details">Open<br>details</a>
+      </div>
+    </div>
+
+    <div class="request-card">
+      <div class="tag-row">
+        <span class="tag category">Design</span>
+        <span class="tag medium">Medium</span>
+        <span class="tag open">Open</span>
+      </div>
+      <div class="request-title">Looking for Figma feedback on a volunteer event poster</div>
+      <div class="request-body">I have a draft poster for a campus community event and want sharper hierarchy, spacing, and CTA copy.</div>
+      <div class="tag-row" style="margin-bottom: 14px;">
+        <span class="tag skill">Figma</span>
+        <span class="tag skill">Poster</span>
+        <span class="tag skill">Design Review</span>
+      </div>
+      <div class="request-footer">
+        <div>
+          <div class="requester-name">Ayesha Khan</div>
+          <div class="requester-meta">Lahore • 1 helper interested</div>
+        </div>
+        <a href="#" class="open-details">Open<br>details</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  HelpHub AI is built as a premium-feel, multi-page community support product using HTML, CSS, JavaScript, and LocalStorage.
+</footer>
+
+</body>
+</html>

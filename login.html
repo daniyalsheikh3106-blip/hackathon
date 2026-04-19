@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HelpHub UI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">
+      <div class="logo-box">H</div>
+      <span>HelpHub AI</span>
+    </div>
+
+    <nav>
+      <a href="#">Dashboard</a>
+      <a href="#">Explore</a>
+      <button class="create-btn">Create Request</button>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="small-text">CREATE REQUEST</p>
+    <h1>Turn a rough problem into a clear help request.</h1>
+    <p class="sub-text">
+      Use built-in AI suggestions for category, urgency, tags, and a stronger description rewrite.
+    </p>
+  </section>
+
+  <!-- MAIN -->
+  <section class="container">
+
+    <!-- LEFT FORM -->
+    <div class="form-card">
+
+      <label>Title</label>
+      <input type="text" placeholder="Need review on my JavaScript quiz app before submission"/>
+
+      <label>Description</label>
+      <textarea placeholder="Explain the challenge, your current progress, deadline, and what kind of help would be useful."></textarea>
+
+      <div class="row">
+        <div class="field">
+          <label>Tags</label>
+          <input type="text" placeholder="JavaScript, Debugging, Review"/>
+        </div>
+
+        <div class="field">
+          <label>Category</label>
+          <select>
+            <option>Web Development</option>
+          </select>
+        </div>
+      </div>
+
+      <label>Urgency</label>
+      <select>
+        <option>High</option>
+      </select>
+
+      <div class="buttons">
+        <button class="secondary">Apply AI suggestions</button>
+        <button class="primary">Publish request</button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="side-card">
+      <p class="small-text">AI ASSISTANT</p>
+      <h2>Smart request guidance</h2>
+
+      <div class="info">
+        <span>Suggested category</span>
+        <b>Community</b>
+      </div>
+
+      <div class="info">
+        <span>Detected urgency</span>
+        <b>Low</b>
+      </div>
+
+      <div class="info">
+        <span>Suggested tags</span>
+        <b class="link">Add more detail for smarter tags</b>
+      </div>
+
+      <div class="info">
+        <span>Rewrite suggestion</span>
+        <b class="link">Start describing the challenge to generate a stronger version.</b>
+      </div>
+
+    </div>
+
+  </section>
+
+</body>
+</html>

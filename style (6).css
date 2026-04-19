@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard UI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">
+    <div class="logo-box">H</div>
+    <span>HelpHub AI</span>
+  </div>
+  <nav>
+    <a href="../dashboard.html">Dashboard</a>
+    <a href="../explore.html">Explore</a>
+    <a href="../ranking/index.html" class="active">Leaderboard</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="label">LEADERBOARD</p>
+  <h1>Recognize the people who keep the community moving.</h1>
+  <p class="sub">
+    Trust score, contribution count, and badges create visible momentum for reliable helpers.
+  </p>
+</section>
+
+<!-- MAIN -->
+<section class="container">
+
+  <!-- LEFT -->
+  <div class="card">
+    <p class="label">TOP HELPERS</p>
+    <h2>Rankings</h2>
+
+    <div class="user">
+      <div class="avatar">HA</div>
+      <div class="info">
+        <strong>#2 Hassan Ali</strong>
+        <p>JavaScript, React, Git/GitHub</p>
+      </div>
+      <div class="meta">
+        <span>88%</span>
+        <p>24 contributions</p>
+      </div>
+    </div>
+
+    <div class="user">
+      <div class="avatar orange">SN</div>
+      <div class="info">
+        <strong>#3 Sara Noor</strong>
+        <p>Python, Data Analysis</p>
+      </div>
+      <div class="meta">
+        <span>74%</span>
+        <p>11 contributions</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="card">
+    <p class="label">BADGE SYSTEM</p>
+    <h2>Trust and achievement</h2>
+
+    <div class="progress-card">
+      <strong>Hassan Ali</strong>
+      <p>Code Rescuer • Bug Hunter</p>
+      <div class="bar">
+        <div class="fill" style="width:85%"></div>
+      </div>
+    </div>
+
+    <div class="progress-card">
+      <strong>Sara Noor</strong>
+      <p>Community Voice</p>
+      <div class="bar">
+        <div class="fill" style="width:70%"></div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+</body>
+</html>

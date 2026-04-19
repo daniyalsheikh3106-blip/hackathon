@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HelpHub AI – Explore</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #dce8dc 0%, #e8e2d4 50%, #ede0ce 100%);
+    color: #1a1a1a;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    padding: 14px 40px;
+    background: transparent;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    margin-right: auto;
+  }
+
+  .nav-logo-icon {
+    width: 30px;
+    height: 30px;
+    background: #4D6A59;
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #1a1a1a;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 999px;
+    transition: background 0.18s;
+  }
+
+  .nav-links a:hover { background: rgba(0,0,0,0.07); }
+
+  .nav-links a.active {
+    background: #ffffff;
+    border: 1px solid #ddd8cc;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+
+  /* HERO BANNER */
+  .hero-banner {
+    margin: 0 24px 28px;
+    background: #15322E;
+    border-radius: 18px;
+    padding: 44px 48px;
+  }
+
+  .hero-banner-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 14px;
+  }
+
+  .hero-banner-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    max-width: 720px;
+  }
+
+  .hero-banner-desc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* MAIN LAYOUT */
+  .main-layout {
+    display: grid;
+    grid-template-columns: 310px 1fr;
+    gap: 20px;
+    padding: 0 24px 48px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* FILTER PANEL */
+  .filter-panel {
+    background: #ffffff;
+    border: 1px solid #ddd8cc;
+    border-radius: 18px;
+    padding: 32px 28px;
+    height: fit-content;
+  }
+
+  .filter-eyebrow {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #4D6A59;
+    margin-bottom: 10px;
+  }
+
+  .filter-headline {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 32px;
+  }
+
+  .filter-group {
+    margin-bottom: 28px;
+  }
+
+  .filter-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+  }
+
+  .filter-divider {
+    height: 1px;
+    background: #ece8e0;
+    margin-bottom: 14px;
+  }
+
+  .select-wrapper {
+    position: relative;
+  }
+
+  .select-wrapper::after {
+    content: '∨';
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    color: #999;
+    pointer-events: none;
+  }
+
+  .filter-select {
+    width: 100%;
+    padding: 10px 36px 10px 14px;
+    border: 1px solid #ddd8cc;
+    border-radius: 8px;
+    background: #ffffff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    color: #1a1a1a;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+
+  .filter-select:focus { border-color: #4D6A59; }
+
+  .filter-input {
+    width: 100%;
+    padding: 10px 14px;
+    border: none;
+    border-bottom: 1px solid #ddd8cc;
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #888;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .filter-input:focus { border-color: #4D6A59; }
+
+  /* FEED */
+  .feed {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .request-card {
+    background: #ffffff;
+    border: 1px solid #ddd8cc;
+    border-radius: 16px;
+    padding: 24px 28px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+
+  .tag {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 13px;
+    border-radius: 999px;
+    border: 1px solid #ddd8cc;
+    background: #f5f2ec;
+    color: #1a1a1a;
+  }
+
+  .tag.category { background: #e2ede8; color: #2a5040; border-color: #b8d4c4; }
+  .tag.high     { background: #f5dada; color: #7a2020; border-color: #D08282; }
+  .tag.medium   { background: #fdf0e0; color: #9a6010; border-color: #f0d8a0; }
+  .tag.low      { background: #e8f0fc; color: #2a48a0; border-color: #b0c4f0; }
+  .tag.solved   { background: #d6eedd; color: #1e5525; border-color: #9ECEA9; }
+  .tag.open     { background: #e8eef8; color: #2a48a0; border-color: #b0c0e8; }
+  .tag.skill    { background: #f5f2ec; color: #333;    border-color: #ddd8cc; }
+
+  .request-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .request-body {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 14px;
+    line-height: 1.65;
+  }
+
+  .request-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 6px;
+  }
+
+  .requester-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 2px;
+  }
+
+  .requester-meta {
+    font-size: 12px;
+    color: #888;
+  }
+
+  .open-details {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .open-details:hover { text-decoration: underline; }
+
+  /* Responsive */
+  @media (max-width: 780px) {
+    nav { padding: 12px 16px; }
+    .hero-banner { margin: 0 12px 20px; padding: 32px 24px; }
+    .hero-banner-headline { font-size: 28px; }
+    .main-layout { grid-template-columns: 1fr; padding: 0 12px 40px; }
+  }
+  .logo-bx{
+    width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #0f766e 0%, #14b8a6 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon logo-bx">H</div>
+    <span class="nav-logo-text">HelpHub AI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="explore.html" class="active">Explore</a></li>
+    <li><a href="ranking/index.html">Leaderboard</a></li>
+    <li><a href="notifications/index.html">Notifications</a></li>
+  </ul>
+</nav>
+
+<!-- HERO BANNER -->
+<div class="hero-banner" style="max-width: 1050px; margin: 30px auto;">
+  <p class="hero-banner-eyebrow">Explore / Feed</p>
+  <h1 class="hero-banner-headline">Browse help requests with filterable community context.</h1>
+  <p class="hero-banner-desc">Filter by category, urgency, skills, and location to surface the best matches.</p>
+</div>
+
+<!-- MAIN -->
+<div class="main-layout">
+
+  <!-- FILTERS -->
+  <aside class="filter-panel">
+    <p class="filter-eyebrow">Filters</p>
+    <h2 class="filter-headline">Refine the feed</h2>
+
+    <!-- Category -->
+    <div class="filter-group">
+      <label class="filter-label">Category</label>
+      <div class="filter-divider"></div>
+      <div class="select-wrapper">
+        <select class="filter-select">
+          <option value="">All categories</option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Urgency -->
+    <div class="filter-group">
+      <label class="filter-label">Urgency</label>
+      <div class="filter-divider"></div>
+      <div class="select-wrapper">
+        <select class="filter-select">
+          <option value="">All urgency levels</option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+          <option value=""></option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="filter-group">
+      <label class="filter-label">Skills</label>
+      <div class="filter-divider"></div>
+      <input type="text" class="filter-input" placeholder="React, Figma, Git/GitHub">
+      <div class="filter-divider" style="margin-top:14px;"></div>
+    </div>
+
+    <!-- Location -->
+    <div class="filter-group">
+      <label class="filter-label">Location</label>
+      <div class="filter-divider"></div>
+      <input type="text" class="filter-input" placeholder="Karachi, Lahore, Remote">
+      <div class="filter-divider" style="margin-top:14px;"></div>
+    </div>
+  </aside>
+
+  <!-- FEED -->
+  <div class="feed">
+
+    <!-- Card 1 -->
+    <div class="request-card">
+      <div class="tag-row">
+        <span class="tag category">Web Development</span>
+        <span class="tag high">High</span>
+        <span class="tag solved">Solved</span>
+      </div>
+      <div class="request-title">Need help</div>
+      <div class="request-body">helpn needed</div>
+      <div class="request-footer">
+        <div>
+          <div class="requester-name">Ayesha Khan</div>
+          <div class="requester-meta">Karachi • 1 helper interested</div>
+        </div>
+        <a href="#" class="open-details">Open details</a>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="request-card">
+      <div class="tag-row">
+        <span class="tag category">Web Development</span>
+        <span class="tag high">High</span>
+        <span class="tag solved">Solved</span>
+      </div>
+      <div class="request-title">Need help making my portfolio responsive before demo day</div>
+      <div class="request-body">My HTML/CSS portfolio breaks on tablets and I need layout guidance before tomorrow evening.</div>
+      <div class="tag-row">
+        <span class="tag skill">HTML/CSS</span>
+        <span class="tag skill">Responsive</span>
+        <span class="tag skill">Portfolio</span>
+      </div>
+      <div class="request-footer">
+        <div>
+          <div class="requester-name">Sara Noor</div>
+          <div class="requester-meta">Karachi • 1 helper interested</div>
+        </div>
+        <a href="#" class="open-details">Open details</a>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="request-card">
+      <div class="tag-row">
+        <span class="tag category">Design</span>
+        <span class="tag medium">Medium</span>
+        <span class="tag open">Open</span>
+      </div>
+      <div class="request-title">Looking for Figma feedback on a volunteer event poster</div>
+      <div class="request-body">I have a draft poster for a campus community event and want sharper hierarchy, spacing, and CTA copy.</div>
+      <div class="tag-row">
+        <span class="tag skill">Figma</span>
+        <span class="tag skill">Poster</span>
+        <span class="tag skill">Design Review</span>
+      </div>
+      <div class="request-footer">
+        <div>
+          <div class="requester-name">Ayesha Khan</div>
+          <div class="requester-meta">Lahore • 1 helper interested</div>
+        </div>
+        <a href="#" class="open-details">Open details</a>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="request-card">
+      <div class="tag-row">
+        <span class="tag category">Career</span>
+        <span class="tag low">Low</span>
+        <span class="tag solved">Solved</span>
+      </div>
+      <div class="request-title">Need mock interview support for internship applications</div>
+      <div class="request-body">Applying to frontend internships and need someone to practice behavioral and technical interview questions with me.</div>
+      <div class="tag-row">
+        <span class="tag skill">Interview Prep</span>
+        <span class="tag skill">Career</span>
+        <span class="tag skill">Frontend</span>
+      </div>
+      <div class="request-footer">
+        <div>
+          <div class="requester-name">Sara Noor</div>
+          <div class="requester-meta">Remote • 2 helpers interested</div>
+        </div>
+        <a href="#" class="open-details">Open details</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

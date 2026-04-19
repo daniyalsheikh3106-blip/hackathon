@@ -1,0 +1,229 @@
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #e9e4da, #e6dccb);
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 60px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.logo-box {
+  width: 40px;
+  height: 40px;
+  background: #1f8f7a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  color: #555;
+  flex-wrap: wrap;
+}
+
+/* LAYOUT */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
+  padding: 40px;
+  flex-wrap: wrap;
+}
+
+/* CARDS (shared logic) */
+.left-card,
+.right-card {
+  width: 100%;
+  padding: 40px;
+  border-radius: 30px;
+}
+
+/* LEFT CARD */
+.left-card {
+  max-width: 520px;
+  min-height: 520px;
+  background: linear-gradient(135deg, #0e3b34, #092a25);
+  color: white;
+}
+
+.left-card h1 {
+  font-size: 48px;
+  margin: 20px 0;
+  line-height: 1.2;
+}
+
+.left-card .desc {
+  color: #cbd5d1;
+  margin-bottom: 20px;
+}
+
+.left-card ul {
+  margin-top: 20px;
+  padding-left: 20px;
+}
+
+.left-card li {
+  margin-bottom: 10px;
+  color: #cbd5d1;
+}
+
+/* RIGHT CARD */
+.right-card {
+  max-width: 420px;
+  background: #f7f3ea;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.right-card h2 {
+  font-size: 28px;
+  margin: 10px 0 20px;
+}
+
+/* TEXT */
+.tag {
+  font-size: 12px;
+  letter-spacing: 2px;
+  opacity: 0.7;
+}
+
+.small {
+  color: #777;
+}
+
+/* FORM */
+label {
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+select, input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+/* ROW */
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.row div {
+  flex: 1;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(to right, #1f8f7a, #3bbfa6);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* ========================= */
+/* 📱 RESPONSIVE SYSTEM */
+/* ========================= */
+
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 20px 30px;
+  }
+
+  .container {
+    padding: 30px;
+    gap: 30px;
+  }
+
+  .left-card h1 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    gap: 20px;
+    font-size: 14px;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .left-card,
+  .right-card {
+    max-width: 100%;
+  }
+
+  .left-card h1 {
+    font-size: 32px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-card,
+  .right-card {
+    padding: 25px;
+  }
+
+  .left-card h1 {
+    font-size: 26px;
+  }
+
+  .right-card h2 {
+    font-size: 22px;
+  }
+}

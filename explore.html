@@ -1,0 +1,211 @@
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #e9e4da, #e6dccb);
+  padding: 40px;
+  overflow-x: hidden;
+}
+
+/* GLOBAL WIDTH */
+.hero,
+.sub-nav,
+.stats,
+.requests {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, #1c2c2a, #263a37);
+  color: white;
+  padding: 50px;
+  border-radius: 30px;
+}
+
+.hero h1 {
+  font-size: clamp(26px, 5vw, 42px);
+  margin: 15px 0;
+}
+
+.hero .sub {
+  color: #cfd6d3;
+}
+
+/* NAV */
+.sub-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px auto;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-box {
+  width: 35px;
+  height: 35px;
+  background: #1f8f7a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.links {
+  display: flex;
+  gap: 30px;
+  color: #666;
+  flex-wrap: wrap;
+}
+
+.links .active {
+  background: #dcefe9;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap; /* key fix */
+}
+
+.card {
+  flex: 1;
+  min-width: 250px;
+  background: #f4efe6;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+.card h2 {
+  margin: 10px 0;
+}
+
+/* REQUESTS */
+.requests {
+  margin: 30px auto;
+  background: #f4efe6;
+  padding: 30px;
+  border-radius: 25px;
+}
+
+.requests h2 {
+  margin: 10px 0 20px;
+}
+
+.req-card {
+  background: #f9f6f1;
+  padding: 20px;
+  border-radius: 18px;
+  margin-bottom: 15px;
+}
+
+.req-card h4 {
+  margin-bottom: 8px;
+}
+
+.badges {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.badges span {
+  background: #dcefe9;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.mini {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #6b7280;
+}
+
+.tag {
+  font-size: 12px;
+  letter-spacing: 2px;
+  opacity: 0.7;
+}
+
+/* ========================= */
+/* 📱 RESPONSIVE */
+/* ========================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  body {
+    padding: 20px;
+  }
+
+  .hero {
+    padding: 40px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .hero {
+    padding: 30px;
+  }
+
+  .sub-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .links {
+    gap: 15px;
+  }
+
+  .stats {
+    flex-direction: column; /* stack cards */
+  }
+
+  .requests {
+    padding: 20px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .hero {
+    padding: 25px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .requests {
+    padding: 15px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+}
